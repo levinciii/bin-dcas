@@ -8,6 +8,8 @@ BIN-DCAS (Basic Interconnected Node Dental Clinic Appointment System) is a revis
 
 > react (npx create-react-app@latest *insert your app name*)
 
+> react-router-dom (npm install react-router-dom)
+
 ### To run the Front-End, type in your terminal 'npm run bin'.
 If you want to change this, go to 'package.json' and create a new script or edit the script that I have by default.
 
