@@ -6,11 +6,21 @@ const PatientsDetails = ({ patient }) => {
         <p><strong>Birthdate: </strong>{patient.birthdate}</p>
         <p><strong>Age: </strong>{patient.age}</p>
         <p><strong>Contact Details: </strong></p>
-        <p><div className="tab"></div><strong>Phone Number: </strong>{patient.contact_details.phone_num}</p>
-        <p><div className="tab"></div><strong>Email: </strong>{patient.contact_details.email}</p>
+        <div className="tab">
+          <p><strong>Phone Number: </strong>{patient.contact_details.phone_num}</p>
+        </div>
+        <br></br>
+        <div className="tab">
+          <p><strong>Email: </strong>{patient.contact_details.email}</p>
+        </div>
         <p><strong>Appointment: </strong></p>
-        <p><div className="tab"></div><strong>Date: </strong>{patient.appointment.date}</p>
-        <p><div className="tab"></div><strong>Time: </strong>{patient.appointment.time}</p>
+        <div className="tab">
+          <p><strong>Date: </strong>{patient.appointment.date}</p>
+        </div>
+        <br></br>
+        <div className="tab">
+          <p><strong>Time: </strong>{patient.appointment.time}</p>
+        </div>
         <p>{patient.createdAt}</p>
       </div>
     )

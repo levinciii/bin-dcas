@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 
 // Components
 import PatientsDetails from "../components/PatientsDetails"
+import PatientsForm from "../components/PatientsForm"
 
 const Index = () => {
     const [patients, setPatients] = useState(null)
@@ -17,10 +18,13 @@ const Index = () => {
             if (response.ok) {
                 setPatients(json)
             }
+        } 
         
-        } catch (error) {
+        catch (error) {
             console.error(error)
-        } finally {
+        } 
+        
+        finally {
             setIsLoading(false)
         }
        
@@ -32,13 +36,7 @@ const Index = () => {
 
     }, [])
 
-    useEffect(() => {
-        console.log("test")
-
-    }, [isLoading])
-
     if (isLoading) {
-
         return (
             <div>
                 <h1>Loading Please Wait.</h1>
@@ -53,6 +51,7 @@ const Index = () => {
                     <PatientsDetails key={patient._id} patient={patient} />
                 ))}
             </div>
+            <PatientsForm />
         </div>
     )
 }
