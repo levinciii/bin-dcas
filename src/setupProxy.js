@@ -1,7 +1,7 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function(bin) {
-  bin.get(
+  bin.use(
     '/bin/patients/',
     createProxyMiddleware({
       target: 'http://localhost:2609',
