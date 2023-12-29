@@ -66,7 +66,7 @@ const PatientsForm = () => {
             <input type="text" onChange={(e) => setLName(e.target.value)} value={lname}/>
             
             <label>Birth Date</label>
-            <input type="text" onChange={(e) => setBirthdate(e.target.value)} value={birthdate}/>
+            <input type="date" onChange={(e) => setBirthdate(e.target.value)} value={birthdate}/>
             
             <label>Age</label>
             <input type="text" onChange={(e) => setAge(e.target.value)} value={age}/>
@@ -75,14 +75,14 @@ const PatientsForm = () => {
             <input type="text" onChange={(e) => setPhoneNum(e.target.value)} value={phone_num}/>
             
             <label>Email</label>
-            <input type="text" onChange={(e) => setEmail(e.target.value)} value={email}/>
+            <input type="email" onChange={(e) => setEmail(e.target.value)} value={email}/>
             
             <label>Date</label>
-            <input type="text" onChange={(e) => setDate(e.target.value)} value={date}/>
+            <input type="date" onChange={(e) => setDate(e.target.value)} value={date}/>
             
             <label>Time</label>
-            <input type="text" onChange={(e) => setTime(e.target.value)} value={time}/>
-
+            <input type="time" onChange={(e) => setTime(e.target.value)} value={time}/>
+        
             <button>Add Patient</button>
             {error && <div className="error">{error}</div>}
         </form>

@@ -1,9 +1,15 @@
+import Moment from 'moment';
+
 const PatientsDetails = ({ patient }) => {
+
+  let birthdate = Moment(patient.birthdate).utc().format('M/DD/YYYY');
+  let appointment_date = Moment(patient.appointment.date).utc().format('M/DD/YYYY');
+  // let appointment_time = Moment(patient.appointment.time).utc().format('LT');
 
     return (
       <div className="patient-details">
         <h4>{patient.name.fname} {patient.name.mname} {patient.name.lname}</h4>
-        <p><strong>Birthdate: </strong>{patient.birthdate}</p>
+        <p><strong>Birthdate: </strong>{birthdate}</p>
         <p><strong>Age: </strong>{patient.age}</p>
         <p><strong>Contact Details: </strong></p>
         <div className="tab">
@@ -15,7 +21,7 @@ const PatientsDetails = ({ patient }) => {
         </div>
         <p><strong>Appointment: </strong></p>
         <div className="tab">
-          <p><strong>Date: </strong>{patient.appointment.date}</p>
+          <p><strong>Date: </strong>{appointment_date}</p>
         </div>
         <br></br>
         <div className="tab">
