@@ -2,10 +2,10 @@ import Moment from 'moment';
 
 const PatientsDetails = ({ patient }) => {
 
-  let birthdate = Moment(patient.birthdate).utc().format('M/DD/YYYY');
-  let appointment_date = Moment(patient.appointment.date).utc().format('M/DD/YYYY');
-  // let appointment_time = Moment(patient.appointment.time).utc().format('LT');
-
+  let birthdate = Moment(patient.birthdate).format('M/DD/YYYY');
+  let appointment_date = Moment(patient.appointment.datetime).format('M/DD/YYYY');
+  let appointment_time = Moment(patient.appointment.datetime).format('LT'); 
+  
     return (
       <div className="patient-details">
         <h4>{patient.name.fname} {patient.name.mname} {patient.name.lname}</h4>
@@ -25,7 +25,7 @@ const PatientsDetails = ({ patient }) => {
         </div>
         <br></br>
         <div className="tab">
-          <p><strong>Time: </strong>{patient.appointment.time}</p>
+          <p><strong>Time: </strong>{appointment_time}</p>
         </div>
         <p>{patient.createdAt}</p>
       </div>

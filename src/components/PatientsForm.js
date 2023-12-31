@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { usePatientsContext } from "../hooks/usePatientsContext"
 
 const PatientsForm = () => {
+    const {dispatch} = usePatientsContext()
     const [fname, setFName] = useState('')
     const [mname, setMName] = useState('')
     const [lname, setLName] = useState('')
@@ -8,8 +10,7 @@ const PatientsForm = () => {
     const [age, setAge] = useState('')
     const [phone_num, setPhoneNum] = useState('')
     const [email, setEmail] = useState('')
-    const [date, setDate] = useState('')
-    const [time, setTime] = useState('')
+    const [datetime, setDateTime] = useState('')
     const [error, setError] = useState(null)
 
     const handleSubmit = async (e) => {
@@ -20,7 +21,7 @@ const PatientsForm = () => {
             birthdate,
             age,
             contact_details: {phone_num, email},
-            appointment: {date, time}
+            appointment: {datetime}
         }
 
         const response = await fetch('/bin/patients/', {
@@ -45,10 +46,10 @@ const PatientsForm = () => {
             setAge('')
             setPhoneNum('')
             setEmail('')
-            setDate('')
-            setTime('')
+            setDateTime('')
             setError(null)
             console.log('New Patient Added!', json)
+            dispatch({type: 'CREATE_PATIENTS', payload: json})
         }
     }
 
@@ -77,13 +78,11 @@ const PatientsForm = () => {
             <label>Email</label>
             <input type="email" onChange={(e) => setEmail(e.target.value)} value={email}/>
             
-            <label>Date</label>
-            <input type="date" onChange={(e) => setDate(e.target.value)} value={date}/>
-            
-            <label>Time</label>
-            <input type="time" onChange={(e) => setTime(e.target.value)} value={time}/>
+            <label>Date and Time Appointment</label>
+            <input type="datetime-local" onChange={(e) => setDateTime(e.target.value)} value={datetime}/>
         
             <button>Add Patient</button>
+
             {error && <div className="error">{error}</div>}
         </form>
     )
