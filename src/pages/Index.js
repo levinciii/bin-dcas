@@ -14,24 +14,23 @@ const Index = () => {
             const response = await fetch('/bin/patients/')
             const json = await response.json()
             
-            if (response.ok) {
-                dispatch({type: 'SET_PATIENTS', payload: json})
-            }
+            try { 
+                if (response.ok) {
+                    dispatch({type: 'SET_PATIENTS', payload: json})
+                }
+            } 
+            
+            catch (error) {
+                console.error(error)
+            } 
+            
+            // finally {
+            //     setIsLoading(false)
+            // }
         }
 
         fetchPatients()
     }, [])
-
-    // try { 
-    // } 
-    
-    // catch (error) {
-    //     console.error(error)
-    // } 
-    
-    // finally {
-    //     setIsLoading(false)
-    // }
 
     // if (isLoading) {
     //     return (
