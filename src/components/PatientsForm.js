@@ -12,6 +12,8 @@ const PatientsForm = () => {
     const [email, setEmail] = useState('')
     const [datetime, setDateTime] = useState('')
     const [error, setError] = useState(null)
+    const [emptyFields, setEmptyFields] = useState([])
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -35,7 +37,8 @@ const PatientsForm = () => {
         const json = await response.json()
 
         if (!response.ok) {
-            setError(json.error)
+            setError(json.error)    
+            setEmptyFields(json.emptyFields)
         }
 
         if (response.ok) {
@@ -48,6 +51,7 @@ const PatientsForm = () => {
             setEmail('')
             setDateTime('')
             setError(null)
+            setEmptyFields([])
             console.log('New Patient Added!', json)
             dispatch({type: 'CREATE_PATIENTS', payload: json})
         }
@@ -58,28 +62,28 @@ const PatientsForm = () => {
             <h3>Add New Patient</h3>
 
             <label>First Name</label>
-            <input type="text" onChange={(e) => setFName(e.target.value)} value={fname}/>
+            <input type="text" onChange={(e) => setFName(e.target.value)} value={fname} className={emptyFields.includes('fname') ? 'error' : ''}/>
             
             <label>Middle Name</label>
-            <input type="text" onChange={(e) => setMName(e.target.value)} value={mname}/>
+            <input type="text" onChange={(e) => setMName(e.target.value)} value={mname} className={emptyFields.includes('mname') ? 'error' : ''}/>
             
             <label>Last Name</label>
-            <input type="text" onChange={(e) => setLName(e.target.value)} value={lname}/>
+            <input type="text" onChange={(e) => setLName(e.target.value)} value={lname} className={emptyFields.includes('lname') ? 'error' : ''}/>
             
             <label>Birth Date</label>
-            <input type="date" onChange={(e) => setBirthdate(e.target.value)} value={birthdate}/>
+            <input type="date" onChange={(e) => setBirthdate(e.target.value)} value={birthdate} className={emptyFields.includes('birthdate') ? 'error' : ''}/>
             
             <label>Age</label>
-            <input type="text" onChange={(e) => setAge(e.target.value)} value={age}/>
+            <input type="text" onChange={(e) => setAge(e.target.value)} value={age} className={emptyFields.includes('age') ? 'error' : ''}/>
             
             <label>Phone Number</label>
-            <input type="text" onChange={(e) => setPhoneNum(e.target.value)} value={phone_num}/>
+            <input type="text" onChange={(e) => setPhoneNum(e.target.value)} value={phone_num} className={emptyFields.includes('phone_num') ? 'error' : ''}/>
             
             <label>Email</label>
-            <input type="email" onChange={(e) => setEmail(e.target.value)} value={email}/>
+            <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} className={emptyFields.includes('email') ? 'error' : ''}/>
             
             <label>Date and Time Appointment</label>
-            <input type="datetime-local" onChange={(e) => setDateTime(e.target.value)} value={datetime}/>
+            <input type="datetime-local" onChange={(e) => setDateTime(e.target.value)} value={datetime} className={emptyFields.includes('datetime') ? 'error' : ''}/>
         
             <button>Add Patient</button>
 
