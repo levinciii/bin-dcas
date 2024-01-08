@@ -6,7 +6,8 @@ const PatientsDetails = ({ patient }) => {
   let birthdate = Moment(patient.birthdate).format('M/DD/YYYY');
   let appointment_date = Moment(patient.appointment.datetime).format('M/DD/YYYY');
   let appointment_time = Moment(patient.appointment.datetime).format('LT'); 
-
+  let createdAt = Moment(patient.createdAt).startOf('hour').fromNow(); 
+  
   const { dispatch } = usePatientsContext()
   const handleClick = async () => {
     const response = await fetch('/bin/patients/' + patient._id, {
@@ -41,8 +42,8 @@ const PatientsDetails = ({ patient }) => {
       <div className="tab">
         <p><strong>Time: </strong>{appointment_time}</p>
       </div>
-      <p>{patient.createdAt}</p>
-      <span onClick={handleClick}>Delete</span>
+      <p>{createdAt}</p>
+      <span className="material-symbols-outlined" onClick={handleClick}>Delete</span>
     </div>
   )
 }
