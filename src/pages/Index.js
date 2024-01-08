@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { usePatientsContext } from "../hooks/usePatientsContext"
 
 // Components
@@ -7,7 +7,7 @@ import PatientsForm from "../components/PatientsForm"
 
 const Index = () => {
     const {patients, dispatch} = usePatientsContext()
-    // const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchPatients = async () => {
@@ -24,21 +24,21 @@ const Index = () => {
                 console.error(error)
             } 
             
-            // finally {
-            //     setIsLoading(false)
-            // }
+            finally {
+                setIsLoading(false)
+            }
         }
 
         fetchPatients()
-    }, [])
+    }, [dispatch])
 
-    // if (isLoading) {
-    //     return (
-    //         <div>
-    //             <h1>Loading Please Wait.</h1>
-    //         </div>
-    //     )
-    // }
+    if (isLoading) {
+        return (
+            <div>
+                <h1>Loading Please Wait.</h1>
+            </div>
+        )
+    }
     
     return (
         <div className="index">
