@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { usePatientsContext } from "../hooks/usePatientsContext"
+import { useState } from 'react'
+import { usePatientsContext } from '../hooks/usePatientsContext'
 
 const PatientsForm = () => {
     const {dispatch} = usePatientsContext()

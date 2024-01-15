@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react"
-import { usePatientsContext } from "../hooks/usePatientsContext"
+import { useEffect, useState } from 'react'
+import { usePatientsContext } from '../hooks/usePatientsContext'
 
 // Components
-import PatientsDetails from "../components/PatientsDetails"
-import PatientsForm from "../components/PatientsForm"
+import PatientsDetails from '../components/PatientsDetails'
+import PatientsForm from '../components/PatientsForm'
 
 const Index = () => {
     const {patients, dispatch} = usePatientsContext()
