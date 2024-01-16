@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 // Pages 
 import Index from './pages/Index'
@@ -25,4 +25,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
