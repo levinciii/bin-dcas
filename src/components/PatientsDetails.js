@@ -1,5 +1,6 @@
 import Moment from 'moment';
 import { usePatientsContext } from '../hooks/usePatientsContext'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 const PatientsDetails = ({ patient }) => {
 
@@ -9,9 +10,18 @@ const PatientsDetails = ({ patient }) => {
   let createdAt = Moment(patient.createdAt).startOf('hour').fromNow(); 
   
   const { dispatch } = usePatientsContext()
+  const { user } = useAuthContext()
+  
   const handleClick = async () => {
+    if (!user) {
+      return
+    }
+
     const response = await fetch('/bin/patients/' + patient._id, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${user.token}`
+      }
     })
     
     const json = await response.json()

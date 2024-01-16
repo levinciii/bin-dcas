@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { usePatientsContext } from '../hooks/usePatientsContext'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 const PatientsForm = () => {
     const {dispatch} = usePatientsContext()
+    const { user } = useAuthContext()
+
     const [fname, setFName] = useState('')
     const [mname, setMName] = useState('')
     const [lname, setLName] = useState('')
@@ -18,6 +21,11 @@ const PatientsForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         
+        if (!user) {
+            setError('You must be Logged In!')
+            return
+        }
+
         const patients ={
             name: {fname, mname, lname},
             birthdate,
@@ -30,7 +38,8 @@ const PatientsForm = () => {
             method: 'POST',
             body: JSON.stringify(patients),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         })
         console.log(patients)
